@@ -3,7 +3,7 @@
 </p>
 <p align="center">
   <a href="https://github.com/jhjjgu0115/Torgue/releases">
-    <img src="https://img.shields.io/badge/release-v0.2-0066cc.svg?style=flat" alt="v0.2" />
+    <img src="https://img.shields.io/badge/release-v0.1-0066cc.svg?style=flat" alt="v0.1" />
   </a>
 </p>
 
