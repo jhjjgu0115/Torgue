@@ -2,13 +2,52 @@
 <Defs>
 	<SoundDef>
 		<defName>Torgue_SG_Fire</defName>
-		<eventNames />   <context>MapOnly</context>
+		<eventNames />
+		<context>MapOnly</context>
 		<maxSimultaneous>1</maxSimultaneous>
 		<subSounds>
 			<li>
 				<grains>
 					<li Class="AudioGrain_Clip">
 						<clipPath>Things/Torgue_SG_Fire</clipPath>
+					</li>
+				</grains>
+				<pitchRange>
+					<min>0.9152174</min>
+					<max>1.042391</max>
+				</pitchRange>
+			</li>
+		</subSounds>
+	</SoundDef>
+	<SoundDef>
+		<defName>Torgue_AR_Fire</defName>
+		<eventNames />
+		<context>MapOnly</context>
+		<maxSimultaneous>1</maxSimultaneous>
+		<subSounds>
+			<li>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>Things/Torgue_AR_Fire</clipPath>
+					</li>
+				</grains>
+				<pitchRange>
+					<min>0.9152174</min>
+					<max>1.042391</max>
+				</pitchRange>
+			</li>
+		</subSounds>
+	</SoundDef>
+	<SoundDef>
+		<defName>Torgue_HG_Fire</defName>
+		<eventNames />
+		<context>MapOnly</context>
+		<maxSimultaneous>1</maxSimultaneous>
+		<subSounds>
+			<li>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>Things/Torgue_HG_Fire</clipPath>
 					</li>
 				</grains>
 				<pitchRange>

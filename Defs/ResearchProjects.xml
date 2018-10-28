@@ -7,21 +7,20 @@
 	</ResearchTabDef>
 
 	<ResearchProjectDef>
-		<defName>BoomBullet</defName>
-		<label>Boom Bullet</label>
-		<description>Ka------Boom</description>
+		<defName>ExplsiveBullet</defName>
+		<label>High Tech Explosion</label>
+		<description>Everything can explode.</description>
 		<tab>SpaceTech</tab>
 		<baseCost>3000</baseCost>
 		<techLevel>Spacer</techLevel>
 		<prerequisites>
-			<li>ChargedShot</li>
 			<li>PrecisionRifling</li>
 		</prerequisites>
 		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
 		<requiredResearchFacilities>
 			<li>MultiAnalyzer</li>
 		</requiredResearchFacilities>    
-		<researchViewX>2</researchViewX>
-		<researchViewY>2</researchViewY>
+		<researchViewX>0</researchViewX>
+		<researchViewY>1</researchViewY>
 	</ResearchProjectDef>
 </Defs>

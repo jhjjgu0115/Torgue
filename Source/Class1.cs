@@ -64,7 +64,6 @@ namespace Torgue
             Scribe_Values.Look<int>(ref this.ticksToDetonation, "ticksToDetonation", 0, false);
         }
     }
-
     public class Torgue_DamageWorker_AddInjury : DamageWorker_AddInjury
     {
         public override void ExplosionStart(Explosion explosion, List<IntVec3> cellsToAffect)
@@ -97,34 +96,60 @@ namespace Torgue
             return flag;
         }
     }
+    public class CompClusterBombProperties : CompProperties
+    {
+        public ThingDef subProjectile;
+        public int clusterCount;
+        public int clusterRadius = 3;
+    }
 
+    public class TorgueProjectileProps:ProjectileProperties
+    {
+        public ThingDef subProjectile;
+        public int clusterCount;
+        public int clusterRadius = 1;
+    }
     public class Projectile_Torgue_Rocket : Projectile
     {
-        private const int ExtraExplosionCount = 3;
-
-        private const int ExtraExplosionRadius = 5;
-
-        protected override void Impact(Thing hitThing)
+        public TorgueProjectileProps Props
         {
-            base.Impact(hitThing);
-            GenExplosion.DoExplosion(Position, Map, def.projectile.explosionRadius, DamageDefOf.Bomb, launcher, DamageAmount, ArmorPenetration, null, equipmentDef, this.def, this.intendedTarget.Thing, null, 0f, 1, false, null, 0f, 1, 0f, false);
-            CellRect cellRect = CellRect.CenteredOn(Position, 5);
-            cellRect.ClipInsideMap(Map);
-            for (int i = 0; i < 3; i++)
+            get
             {
-                IntVec3 randomCell = cellRect.RandomCell;
-                DoFireExplosion(randomCell, Map, 3.9f);
+                return (TorgueProjectileProps)this.def.projectile;
             }
         }
 
-        protected void DoFireExplosion(IntVec3 pos, Map map, float radius)
+        protected override void Impact(Thing hitThing)
         {
-            DamageDef flame = DamageDefOf.Flame;
+            Map map = base.Map;
+            IntVec3 position = base.Position;
+            Map map2 = map;
+            float explosionRadius = this.def.projectile.explosionRadius;
+            DamageDef explosionDamageType = def.projectile.damageDef;
             Thing launcher = this.launcher;
             int damageAmount = base.DamageAmount;
             float armorPenetration = base.ArmorPenetration;
-            ThingDef filth_Fuel = ThingDefOf.Filth_Fuel;
-            GenExplosion.DoExplosion(pos, map, radius, flame, launcher, damageAmount, armorPenetration, null, this.equipmentDef, this.def, this.intendedTarget.Thing, filth_Fuel, 0.2f, 1, false, null, 0f, 1, 0f, false);
+            ThingDef equipmentDef = this.equipmentDef;
+            GenExplosion.DoExplosion(position, map2, explosionRadius, explosionDamageType, launcher, damageAmount, armorPenetration, null, equipmentDef, this.def, this.intendedTarget.Thing, null, 0f, 1, false, null, 0f, 1, 0f, false);
+            for (int index = 0; index < Props.clusterCount; index++)
+            {
+                int max = GenRadial.NumCellsInRadius(Props.clusterRadius);
+                int num;
+                if (Props.clusterRadius > 4)
+                {
+                    num = Rand.Range(2, max);
+                }
+                else
+                {
+                    num = Rand.Range(0, max);
+                }
+
+                IntVec3 c = Position + GenRadial.RadialPattern[num];
+                Projectile_Explosive projectile = (Projectile_Explosive)ThingMaker.MakeThing(Props.subProjectile, null);
+                GenSpawn.Spawn(projectile, position, map);
+                projectile.Launch(this, position.ToVector3(), c, c, ProjectileHitFlags.All, null, null);
+            }
+            base.Impact(hitThing);
         }
     }
 }
