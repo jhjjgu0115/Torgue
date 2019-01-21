@@ -2,7 +2,9 @@
 <ModMetaData>
 	<name>Torgue</name>
 	<author>NukaFrog</author>
-	<targetVersion>1.0.0</targetVersion>
+	<supportedVersions>
+		<li>1.0</li>
+	</supportedVersions>
 	<url>https://github.com/jhjjgu0115/Torgue</url>
 	<description>DID YOU KNOW THAT 97% OF ALL LIVING THINGS ON RimWorld AREN'T EXPLODIN' RIGHT NOW? THAT'S BULL****! Buy TORGUE!"
 

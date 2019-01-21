@@ -115,7 +115,7 @@ namespace Torgue
         {
             get
             {
-                return (TorgueProjectileProps)this.def.projectile;
+                return (TorgueProjectileProps)def.projectile;
             }
         }
 
